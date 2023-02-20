@@ -143,7 +143,7 @@ const Addition = () => {
   const [gameOver, setGameOver] = useState(false);
   const [userName, setUserName] = useState('');
 const [isNameEntered, setIsNameEntered] = useState(false);
-const [isPopupClicked, setIsPopupClicked] = useState(false);
+const [isPopupClicked] = useState(false);
 
 
   const handleSubmit = (event) => {
