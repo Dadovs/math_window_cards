@@ -260,7 +260,7 @@ const [isPopupClicked] = useState(false);
           </p>
           <label className="block mb-2">
             <span className="font-bold">Name:</span>
-            <input type="text" className="ml-2 border border-gray-400 rounded-md p-1" value={userName} onChange={(event) => setUserName(event.target.value)} />
+            <input type="text" className="popup-input ml-2 border border-gray-400 rounded-md p-1" value={userName} onChange={(event) => setUserName(event.target.value)} />
           </label>
           <button
             className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"

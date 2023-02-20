@@ -6,4 +6,7 @@
   .reset-button {
     display: block;
   }
+  .popup-input{
+    width: 100%;
+  }
 }
