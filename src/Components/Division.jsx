@@ -1,37 +1,74 @@
 import React, { useState, useEffect } from 'react';
 
-const Addition = () => {
-  const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
-  const [num2, setNum2] = useState(Math.floor(Math.random() * 10));
+const Division = () => {
+    const [num1, setNum1] = useState(Math.floor(Math.random() * 10) + 1);
+  const [num2, setNum2] = useState(0);
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
   const [questionCount, setQuestionCount] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(5 * 60); // 5 minutes in seconds
   const [gameOver, setGameOver] = useState(false);
   const [userName, setUserName] = useState('');
-const [isNameEntered, setIsNameEntered] = useState(false);
-const [isPopupClicked] = useState(false);
+  const [isNameEntered, setIsNameEntered] = useState(false);
+  const [isPopupClicked] = useState(false);
 
+  useEffect(() => {
+    let options = [];
+
+    switch (num1) {
+      case 1:
+        options = [1];
+        break;
+      case 2:
+        options = [1, 2];
+        break;
+      case 3:
+        options = [1, 3];
+        break;
+      case 4:
+        options = [2, 4];
+        break;
+      case 5:
+        options = [1, 5];
+        break;
+      case 6:
+        options = [2, 3, 6];
+        break;
+      case 7:
+        options = [1, 7];
+        break;
+      case 8:
+        options = [2, 4, 8];
+        break;
+      case 9:
+        options = [1, 9];
+        break;
+      case 10:
+        options = [2, 5, 10];
+        break;
+      default:
+        break;
+    }
+
+    setNum2(options[Math.floor(Math.random() * options.length)]);
+  }, [num1]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (parseInt(answer) === num1 + num2) {
+    if (parseInt(answer) === num1 / num2) {
       setScore(score + 1);
     }
-    setNum1(Math.floor(Math.random() * 10));
-    setNum2(Math.floor(Math.random() * 10));
+    setNum1(Math.floor(Math.random() * 10) + 1);
     setAnswer('');
     setQuestionCount(questionCount + 1);
 
     if (questionCount >= 99 && isPopupClicked) {
-        setScore(0);
-        setQuestionCount(0);
-        setTimeRemaining(5 * 60);
-        setNum1(Math.floor(Math.random() * 10));
-        setNum2(Math.floor(Math.random() * 10));
-      }
+      setScore(0);
+      setQuestionCount(0);
+      setTimeRemaining(5 * 60);
+      setNum1(Math.floor(Math.random() * 10) + 1);
+    }
   };
-
   const handleGameOver = () => {
     setGameOver(true);
   };
@@ -64,6 +101,8 @@ const [isPopupClicked] = useState(false);
       clearInterval(timerId);
     };
   }, [timeRemaining, questionCount, score, isPopupClicked, answer]);
+
+
   return (
     
     <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-900 to-red-500">
@@ -84,11 +123,11 @@ const [isPopupClicked] = useState(false);
           </h1>
           
           <h2 className="font-bold text-lg md:text-2xl lg:text-3xl mb-2">
-            Addition A1
+            Division D1
           </h2>
           
           <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-8">
-            {num1} + {num2} =
+            {num1} ÷ {num2} =
           </h1>
           <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <input
@@ -169,6 +208,6 @@ const [isPopupClicked] = useState(false);
     );
 };
 
-export default Addition;
+export default Division;
 
 

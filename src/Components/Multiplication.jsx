@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Addition = () => {
+const Multiplication = () => {
   const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
   const [num2, setNum2] = useState(Math.floor(Math.random() * 10));
   const [answer, setAnswer] = useState('');
@@ -15,7 +15,7 @@ const [isPopupClicked] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (parseInt(answer) === num1 + num2) {
+    if (parseInt(answer) === num1 * num2) {
       setScore(score + 1);
     }
     setNum1(Math.floor(Math.random() * 10));
@@ -84,11 +84,11 @@ const [isPopupClicked] = useState(false);
           </h1>
           
           <h2 className="font-bold text-lg md:text-2xl lg:text-3xl mb-2">
-            Addition A1
+            Multiplication M1
           </h2>
           
           <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-8">
-            {num1} + {num2} =
+            {num1} x {num2} =
           </h1>
           <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <input
@@ -169,6 +169,6 @@ const [isPopupClicked] = useState(false);
     );
 };
 
-export default Addition;
+export default Multiplication;
 
 

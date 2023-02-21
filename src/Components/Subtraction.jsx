@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const Addition = () => {
+const Subtraction = () => {
   const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
-  const [num2, setNum2] = useState(Math.floor(Math.random() * 10));
+  const [num2, setNum2] = useState(Math.floor(Math.random() * Math.max(1, num1)));
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
   const [questionCount, setQuestionCount] = useState(0);
@@ -13,24 +13,26 @@ const [isNameEntered, setIsNameEntered] = useState(false);
 const [isPopupClicked] = useState(false);
 
 
-  const handleSubmit = (event) => {
+const handleSubmit = (event) => {
     event.preventDefault();
-    if (parseInt(answer) === num1 + num2) {
-      setScore(score + 1);
+    const newNum1 = Math.floor(Math.random() * 10);
+    const newNum2 = Math.floor(Math.random() * Math.max(1, newNum1));
+    if (parseInt(answer) === newNum1 - newNum2) {
+        setScore(score + 1);
     }
-    setNum1(Math.floor(Math.random() * 10));
-    setNum2(Math.floor(Math.random() * 10));
+    setNum1(newNum1);
+    setNum2(newNum2);
     setAnswer('');
     setQuestionCount(questionCount + 1);
-
+    
     if (questionCount >= 99 && isPopupClicked) {
         setScore(0);
         setQuestionCount(0);
         setTimeRemaining(5 * 60);
         setNum1(Math.floor(Math.random() * 10));
         setNum2(Math.floor(Math.random() * 10));
-      }
-  };
+    }
+};
 
   const handleGameOver = () => {
     setGameOver(true);
@@ -84,11 +86,11 @@ const [isPopupClicked] = useState(false);
           </h1>
           
           <h2 className="font-bold text-lg md:text-2xl lg:text-3xl mb-2">
-            Addition A1
+            Subtraction S1
           </h2>
           
           <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-8">
-            {num1} + {num2} =
+            {num1} - {num2} =
           </h1>
           <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <input
@@ -169,6 +171,6 @@ const [isPopupClicked] = useState(false);
     );
 };
 
-export default Addition;
+export default Subtraction;
 
 
