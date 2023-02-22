@@ -2,14 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width: 400px) {
-  .reset-button {
-    display: block;
-  }
-  .popup-input{
-    width: 100%;
-  }
-}
+
 
 /* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
@@ -34,7 +27,42 @@
 .content-div:hover{
     background-image: linear-gradient(
         to right,
-        #1E3A8A,
-        #EF4444
+        #ffffff,
+        #3b82f6
     )!important;
+}
+
+.bgimg{
+  position: relative;
+  isolation: isolate;
+  background-color: white;
+
+}
+
+.bgimg::after{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background-image: url('./Assets/m2logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  opacity: 0.04;
+
+  border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .menu-open .bgimg {
+    display: none;
+  }
+  .reset-button {
+    display: block;
+  }
+  .popup-input{
+    width: 100%;
+  }
 }

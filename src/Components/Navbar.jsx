@@ -2,18 +2,22 @@ import React, {useState} from 'react';
 import {FaBars, FaTimes} from 'react-icons/fa';
 // import {HiOutlineMail} from 'react-icons/hi';
 // import {BsFillPersonLinesFill} from 'react-icons/bs';
-// import Logo from '../assets/logo-m1.png';
+import m2logo from '../Assets/m2logo.png';
 // import {Link} from 'react-scroll';
 
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
-    const handleClick = () => setNav(!nav);
+    // const handleClick = () => setNav(!nav);
+    const handleClick = () => {
+        setNav(!nav);
+        document.body.classList.toggle('menu-open');
+      };
 
   return (
-    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-gradient-to-r from-blue-900 to-red-500 text-gray-300'>
+    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-gradient-to-r from-white to-blue-500 text-black font-bold'>
       <div>
-        <img src="/" alt="Logo" style={{width: '50px'}} />
+        <img src={m2logo} alt="Logo" style={{width: '50px'}} />
       </div>
 
       {/* Menu */}
@@ -57,7 +61,7 @@ const Navbar = () => {
         </div>
 
     {/* Mobile Menu */}
-        <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-gradient-to-r from-blue-900 to-red-500 flex flex-col justify-center items-center'}>
+        <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-gradient-to-r from-white to-blue-500 flex flex-col justify-center items-center'}>
             <li className='py-6 text-4xl'>
                 {/* <Link onClick={handleClick} to="home" smooth={true} duration={500}>
                  Home

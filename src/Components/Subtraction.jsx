@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 const Subtraction = () => {
   const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
   const [num2, setNum2] = useState(Math.floor(Math.random() * Math.max(1, num1)));
@@ -68,7 +69,7 @@ const handleSubmit = (event) => {
   }, [timeRemaining, questionCount, score, isPopupClicked, answer]);
   return (
     
-    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-900 to-red-500">
+    <div className="flex items-center justify-center h-screen bg-gradient-to-r from-white to-blue-500">
         <button
       className="reset-button text-gray-800 bg-yellow-400 border border-gray-700 rounded-3xl px-4 py-2 text-lg md:text-2xl lg:text-3xl hover:bg-yellow-600 hidden sm:block absolute bottom-0 right-0 mb-4 mr-4"
       onClick={() => {
@@ -79,16 +80,15 @@ const handleSubmit = (event) => {
     >
       Reset
     </button>
-      <div className="border-2 border-black rounded-2xl bg-white h-[80vh] w-[90vw] max-w-[700px] p-4">
+
+      <div className="bgimg border-2 border-black rounded-2xl h-[80vh] w-[90vw] max-w-[700px] p-4 mt-6" >
         <div className="text-center py-4 font-mono">
           <h1 className="font-bold text-2xl md:text-4xl lg:text-5xl mb-2">
             Math Window Card
           </h1>
-          
           <h2 className="font-bold text-lg md:text-2xl lg:text-3xl mb-2">
             Subtraction S1
           </h2>
-          
           <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-8">
             {num1} - {num2} =
           </h1>
@@ -108,16 +108,16 @@ const handleSubmit = (event) => {
             >
               Submit
             </button>
-            </form>
+          </form>
             <p className="mt-8">
                 Score: {score} / {questionCount}
             </p>
-            <p className="mt-2">
-            Time Remaining: {Math.floor(timeRemaining / 60)}:
-            {timeRemaining % 60 < 10 ? `0${timeRemaining % 60}` : timeRemaining % 60}
+            <p className="mb-2">
+              Time Remaining: {Math.floor(timeRemaining / 60)}:
+              {timeRemaining % 60 < 10 ? `0${timeRemaining % 60}` : timeRemaining % 60}
             </p>
-            </div>
         </div>
+      </div>
         {gameOver && (
   <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
     <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-75"></div>
