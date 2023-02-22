@@ -32,19 +32,19 @@ const Division = () => {
         options = [1, 5];
         break;
       case 6:
-        options = [2, 3, 6];
+        options = [2, 3];
         break;
       case 7:
         options = [1, 7];
         break;
       case 8:
-        options = [2, 4, 8];
+        options = [2, 4];
         break;
       case 9:
-        options = [1, 9];
+        options = [3, 9];
         break;
       case 10:
-        options = [2, 5, 10];
+        options = [2, 5];
         break;
       default:
         break;
