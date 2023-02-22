@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 
 const Subtraction = () => {
-  const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
-  const [num2, setNum2] = useState(Math.floor(Math.random() * Math.max(1, num1)));
+  const [num1, setNum1] = useState(Math.floor(Math.random() * 10) + 1); // Left number should always be greater
+  const [num2, setNum2] = useState(Math.floor(Math.random() * num1)); // Right number should be less than left number
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
   const [questionCount, setQuestionCount] = useState(0);
@@ -15,24 +15,26 @@ const [isPopupClicked] = useState(false);
 
 
 const handleSubmit = (event) => {
-    event.preventDefault();
-    const newNum1 = Math.floor(Math.random() * 10);
-    const newNum2 = Math.floor(Math.random() * Math.max(1, newNum1));
-    if (parseInt(answer) === newNum1 - newNum2) {
-        setScore(score + 1);
-    }
+  event.preventDefault();
+  if (parseInt(answer) === num1 - num2) {
+    setScore(score + 1);
+  }
+  let newNum1 = Math.floor(Math.random() * 10);
+  let newNum2 = Math.floor(Math.random() * newNum1); // ensure that newNum2 is less than newNum1
+  setNum1(newNum1);
+  setNum2(newNum2);
+  setAnswer('');
+  setQuestionCount(questionCount + 1);
+
+  if (questionCount >= 99 && isPopupClicked) {
+    setScore(0);
+    setQuestionCount(0);
+    setTimeRemaining(5 * 60);
+    newNum1 = Math.floor(Math.random() * 10);
+    newNum2 = Math.floor(Math.random() * newNum1); // ensure that newNum2 is less than newNum1
     setNum1(newNum1);
     setNum2(newNum2);
-    setAnswer('');
-    setQuestionCount(questionCount + 1);
-    
-    if (questionCount >= 99 && isPopupClicked) {
-        setScore(0);
-        setQuestionCount(0);
-        setTimeRemaining(5 * 60);
-        setNum1(Math.floor(Math.random() * 10));
-        setNum2(Math.floor(Math.random() * 10));
-    }
+  }
 };
 
   const handleGameOver = () => {
