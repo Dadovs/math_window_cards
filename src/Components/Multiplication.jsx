@@ -11,12 +11,19 @@ const Multiplication = () => {
   const [userName, setUserName] = useState('');
 const [isNameEntered, setIsNameEntered] = useState(false);
 const [isPopupClicked] = useState(false);
+const [showAnswer, setShowAnswer] = useState(false);
+const [previousAnswer, setPreviousAnswer] = useState(null);
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (parseInt(answer) === num1 * num2) {
       setScore(score + 1);
+      setShowAnswer(false); // hide the answer
+      setPreviousAnswer(null);
+    } else {
+      setShowAnswer(true); // show the answer
+      setPreviousAnswer(num1 * num2);
     }
     setNum1(Math.floor(Math.random() * 10));
     setNum2(Math.floor(Math.random() * 10));
@@ -87,9 +94,16 @@ const [isPopupClicked] = useState(false);
             Multiplication M1
           </h2>
           
-          <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-8">
+          <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-4">
             {num1} x {num2} =
           </h1>
+          {showAnswer && previousAnswer !== null && (
+            <h3
+            className="text-[15px] md:text-[15px] lg:text-[20px] text-red-600 pt-0"
+            >
+              The previous correct answer was {previousAnswer}.
+            </h3>
+          )}
           <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <input
               type="text"
