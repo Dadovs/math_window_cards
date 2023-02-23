@@ -11,19 +11,17 @@ const Multiplication = () => {
   const [userName, setUserName] = useState('');
 const [isNameEntered, setIsNameEntered] = useState(false);
 const [isPopupClicked] = useState(false);
-const [showAnswer, setShowAnswer] = useState(false);
-const [previousAnswer, setPreviousAnswer] = useState(null);
+const [popAlert, setPopAlert] = useState('');
+const [showPopAlert, setShowPopAlert] = useState(false);
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (parseInt(answer) === num1 * num2) {
       setScore(score + 1);
-      setShowAnswer(false); // hide the answer
-      setPreviousAnswer(null);
     } else {
-      setShowAnswer(true); // show the answer
-      setPreviousAnswer(num1 * num2);
+      setPopAlert(`${num1} x ${num2} = ${num1 * num2}`);
+      setShowPopAlert(true);
     }
     setNum1(Math.floor(Math.random() * 10));
     setNum2(Math.floor(Math.random() * 10));
@@ -97,13 +95,22 @@ const [previousAnswer, setPreviousAnswer] = useState(null);
           <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-4">
             {num1} x {num2} =
           </h1>
-          {showAnswer && previousAnswer !== null && (
-            <h3
-            className="text-[15px] md:text-[15px] lg:text-[20px] text-red-600 pt-0"
+
+          {showPopAlert && (
+        <div className="fixed inset-0 z-10 flex justify-center items-center  bg-black bg-opacity-25">
+          <div className="bg-white p-4 rounded-md">
+            <p className='text-red-500 text-[25px] md:text-[30px] lg:text-[35px]'>{popAlert}</p>
+            <button
+              onClick={() => {
+                setShowPopAlert(false);
+              }}
+              className="border rounded-3xl mt-2 text-[20px] md:text-[25px] lg:text-[30px] text-gray-800 bg-green-400 px-2 py-1 hover:bg-green-600"
             >
-              The previous correct answer was {previousAnswer}.
-            </h3>
-          )}
+              Next
+            </button>
+          </div>
+        </div>
+      )}
           <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -111,7 +118,7 @@ const [previousAnswer, setPreviousAnswer] = useState(null);
               className="w-full md:w-2/3 text-center text-4xl md:text-6xl lg:text-7xl border border-green-300 rounded-2xl bg-gray-200 my-4 px-2 py-1"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
-              disabled={gameOver}
+              disabled={gameOver || showPopAlert}
             />
             <button
               type="submit"
