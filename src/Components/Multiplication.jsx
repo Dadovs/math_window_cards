@@ -159,7 +159,7 @@ const [showPopAlert, setShowPopAlert] = useState(false);
           </button>
         </form>
       )}
-      {isNameEntered && (
+      {/* {isNameEntered && (
         <div>
           <h2 className="text-2xl font-bold mb-2">Thank you for playing, {userName}!</h2>
           <p className="font-bold mb-2">
@@ -179,7 +179,45 @@ const [showPopAlert, setShowPopAlert] = useState(false);
             Play Again
           </button>
         </div>
-      )}
+      )} */}
+
+{isNameEntered && score !== questionCount && (
+            
+            <div>
+              <h2 className="text-2xl font-bold mb-2">Level incomplete, {userName}!</h2>
+              <p className="font-bold mb-2">
+                Score: {score} / {questionCount}
+              </p>
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+                onClick={() => {
+                  setTimeRemaining(60 * 5); // Reset to 5 minutes
+                  setIsNameEntered(false);
+                  setUserName('');
+                  setGameOver(false);
+                  window.location.reload();
+                }}
+              >
+                Play Again
+              </button>
+            </div>
+          )}
+          {isNameEntered && score === questionCount && (
+
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Level complete. Congratulations!, {userName}!</h2>
+            <p className="font-bold mb-2">
+              Score: {score} / {questionCount}
+            </p>
+            <a
+              href="/m2"
+              className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+            >
+              Next Level
+            </a>
+          </div>
+          )}
+
     </div>
   </div>
 )}

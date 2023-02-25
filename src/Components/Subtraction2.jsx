@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 
-const Subtraction = () => {
-  const [num1, setNum1] = useState(Math.floor(Math.random() * 10) + 1); // Left number should always be greater
+const Subtraction2 = () => {
+  const [num1, setNum1] = useState(Math.floor(Math.random() * 90) + 10); // Left number should always be greater
   const [num2, setNum2] = useState(Math.floor(Math.random() * num1)); // Right number should be less than left number
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
@@ -23,7 +23,7 @@ const handleSubmit = (event) => {
       setPopAlert(`${num1} - ${num2} = ${num1 - num2}`);
       setShowPopAlert(true);
     }
-  let newNum1 = Math.floor(Math.random() * 10);
+  let newNum1 = Math.floor(Math.random() * 90) + 10;
   let newNum2 = Math.floor(Math.random() * newNum1); // ensure that newNum2 is less than newNum1
   setNum1(newNum1);
   setNum2(newNum2);
@@ -34,7 +34,7 @@ const handleSubmit = (event) => {
     setScore(0);
     setQuestionCount(0);
     setTimeRemaining(5 * 60);
-    newNum1 = Math.floor(Math.random() * 10);
+    newNum1 = Math.floor(Math.random() * 90) + 10;
     newNum2 = Math.floor(Math.random() * newNum1); // ensure that newNum2 is less than newNum1
     setNum1(newNum1);
     setNum2(newNum2);
@@ -93,7 +93,7 @@ const handleSubmit = (event) => {
             Math Window Card
           </h1>
           <h2 className="font-bold text-lg md:text-2xl lg:text-3xl mb-2">
-            Subtraction S1
+            Subtraction S2
           </h2>
           <h1 className="font-bold text-6xl md:text-8xl lg:text-9xl my-4">
             {num1} - {num2} =
@@ -184,41 +184,63 @@ const handleSubmit = (event) => {
       )} */}
 
 {isNameEntered && score !== questionCount && (
-            
-            <div>
-              <h2 className="text-2xl font-bold mb-2">Level incomplete, {userName}!</h2>
-              <p className="font-bold mb-2">
-                Score: {score} / {questionCount}
-              </p>
-              <button
-                className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
-                onClick={() => {
-                  setTimeRemaining(60 * 5); // Reset to 5 minutes
-                  setIsNameEntered(false);
-                  setUserName('');
-                  setGameOver(false);
-                  window.location.reload();
-                }}
-              >
-                Play Again
-              </button>
-            </div>
-          )}
-          {isNameEntered && score === questionCount && (
-
           <div>
-            <h2 className="text-2xl font-bold mb-2">Level complete. Congratulations!, {userName}!</h2>
+            <h2 className="text-2xl font-bold mb-2">Level incomplete, {userName}!</h2>
             <p className="font-bold mb-2">
               Score: {score} / {questionCount}
             </p>
-            <a
-              href="/s2"
+            <button
               className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+              onClick={() => {
+                setTimeRemaining(60 * 5); // Reset to 5 minutes
+                setIsNameEntered(false);
+                setUserName('');
+                setGameOver(false);
+                window.location.reload();
+              }}
             >
-              Next Level
+              Play Again
+            </button>
+          </div>
+        )}
+
+        {isNameEntered && score === questionCount && (
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Congratulations! Thank you for playing, {userName}!</h2>
+            <p className="font-bold mb-2">
+              Score: {score} / {questionCount}
+            </p>
+            <br />
+            <a
+              href='/s1'
+              className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+              onClick={() => {
+                setTimeRemaining(60 * 5); // Reset to 5 minutes
+                setIsNameEntered(false);
+                setUserName('');
+                setGameOver(false);
+                window.location.reload();
+              }}
+            >
+              Reset Subtraction Game
+            </a>
+            <br />
+            <br />
+            <a
+              href='/'
+              className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+              onClick={() => {
+                setTimeRemaining(60 * 5); // Reset to 5 minutes
+                setIsNameEntered(false);
+                setUserName('');
+                setGameOver(false);
+                window.location.reload();
+              }}
+            >
+              Back Home
             </a>
           </div>
-          )}
+        )}
 
     </div>
   </div>
@@ -230,6 +252,6 @@ const handleSubmit = (event) => {
     );
 };
 
-export default Subtraction;
+export default Subtraction2;
 
 

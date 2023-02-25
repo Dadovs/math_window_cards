@@ -118,23 +118,6 @@ const [showPopAlert, setShowPopAlert] = useState(false);
         </div>
       )}
 
-          {/* {showAnswer && previousAnswer !== null && (
-            <h3
-              className="text-[15px] md:text-[15px] lg:text-[20px] text-red-600 pt-0"
-            >
-              The previous correct answer was {previousAnswer}.
-            </h3>
-          )} */}
-
-          {/* {answer !== '' && parseInt(answer) !== num1 + num2 && (
-            <h3
-              className={`text-[15px] md:text-[20px] lg:text-[20px] text-red-600 pt-0 ${
-                showAnswer ? 'block' : 'hidden'
-              }`}
-            >
-              The correct answer is {previousAnswer}.
-            </h3>
-          )} */}
           <form className="flex flex-col items-center" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -183,7 +166,8 @@ const [showPopAlert, setShowPopAlert] = useState(false);
           </button>
         </form>
       )}
-      {isNameEntered && (
+      {/* {isNameEntered &&  (
+  
         <div>
           <h2 className="text-2xl font-bold mb-2">Thank you for playing, {userName}!</h2>
           <p className="font-bold mb-2">
@@ -203,7 +187,46 @@ const [showPopAlert, setShowPopAlert] = useState(false);
             Play Again
           </button>
         </div>
-      )}
+      )} */}
+
+          {isNameEntered && score !== questionCount && (
+            
+            <div>
+              <h2 className="text-2xl font-bold mb-2">Level incomplete, {userName}!</h2>
+              <p className="font-bold mb-2">
+                Score: {score} / {questionCount}
+              </p>
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+                onClick={() => {
+                  setTimeRemaining(60 * 5); // Reset to 5 minutes
+                  setIsNameEntered(false);
+                  setUserName('');
+                  setGameOver(false);
+                  window.location.reload();
+                }}
+              >
+                Play Again
+              </button>
+            </div>
+          )}
+          {isNameEntered && score === questionCount && (
+
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Level complete. Congratulations!, {userName}!</h2>
+            <p className="font-bold mb-2">
+              Score: {score} / {questionCount}
+            </p>
+            <a
+              href="/a2"
+              className="bg-green-500 hover:bg-green-600 text-white py-1 px-2 rounded-md"
+            >
+              Next Level
+            </a>
+          </div>
+          )}
+
+      
     </div>
   </div>
 )}
